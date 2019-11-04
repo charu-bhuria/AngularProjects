@@ -1,5 +1,7 @@
+// app.component.ts
+
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,51 +9,18 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'demo';
-  firstname = 'Charu';
-  keyDown;
-  lastname: string;
-   status: boolean;
-  posts: object[];
-  user = {
-email: '',
-password: ''
-  };
-
-  constructor(){
-    console.log('constuctor........')
-    this.lastname= 'Bhuria';
-    this.getUserStatus();
-    this.posts = [
-      {title: 'Post 1'},
-      {title: 'Post 2'},
-      {title: 'Post 3'},
-      {title: 'Post 4'},
-      {title: 'Post 5'}
-    ];
+  //title = 'Angular Form Validation';
+   angForm: FormGroup;
+   constructor(private fb: FormBuilder) {
+    this.createForm();
   }
-
-  displayFirstName(){
-    return this.firstname;
+   createForm() {
+    this.angForm = this.fb.group({
+       name: ['', Validators.required ],
+       address: ['', Validators.required ],
+       password: ['', [Validators.required,
+       Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)
+      ]]
+    });
   }
-  getUserStatus(){
-    this.status=true;
-  }
-  buttonclick(){
-    alert('testbutton');
-  }
-  mouseover(){
-    alert('Just movse hover processs');
-  }
-  keydowing( data ){
-    this.keyDown = data;
-    //alert('keydowing test');
-  }
-  onSubmit(theForm: NgForm) {
-    this.user.email = theForm.value.email;
-    this.user.password = theForm.value.password;
-   console.log(this.user);
-   //this.http.get('/post', this.user)
-  }
-
-  }
+}

@@ -1,87 +1,45 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="/contact">Contact</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-  <div class="container">
-      <router-outlet></router-outlet>
+<!-- app.component.html -->
+
+<div class="container">
+  <h1>
+    Welcome to {{title}}!!
+  </h1>
+  <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+            <label>Name:</label>
+            <input class="form-control" formControlName="name" type="text">
+        </div>
+        <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['name'].errors.required">
+              Name is required.
+            </div>
+        </div>
+         <div class="form-group">
+            <label>Address:</label>
+            <input class="form-control" formControlName="address" type="text">
+        </div>
+        <div *ngIf="angForm.controls['address'].invalid && (angForm.controls['address'].dirty || angForm.controls['address'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['address'].errors.required">
+              email is required.
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input class="form-control" formControlName="password" type="password">
+        </div>
+        <div *ngIf="angForm.controls['password'].invalid &&(angForm.controls['password'].dirty || angForm.controls['password'].touched)" class="alert alert-danger">
+          Match  PASSWORD
+       <div *ngIf="angForm.controls['password'].errors.required">
+          Password is required.
+        </div>
       </div>
-
-<!--- Start For Loop-->
-<!--<ul>
-  <li *ngFor="let post of posts; let i =index">{{i}}{{post.title}}</li>
-
-</ul>
-<!--End For Loop-->
-<!--<div class="content" role="main">
-
-  <!-- Highlight Card -->
-  <!--<div class="card highlight-card card-small">
-      <button (click)="buttonclick()">Click</button>
-<!--<div (mouseover)="mouseover()" class="box">4555555555</div>-->
-<!--<input (keydown)="keydowing($event.target.value)" type="text"/>
-{{keyDown}}
-<!---- property binding -->
-  <!--<h3>Welcome to {{ firstname }} {{ lastname }} !</h3> 
-  <!--property binding-->
-  <!---- Directivies -->
-  <!--<h3 *ngIf="status; else notActive">Directives {{ firstname }} !</h3> 
-  <ng-template #notActive><p>NotActive</p></ng-template>
-  <!--Directives-->
-  <!-- Start Directivies Style Anf If Condition-->
-  <!--<h1 [ngStyle]="{color: status ?'green' : 'red'}">{{title}}</h1>
-  <!--End Directives Style And If Condition-->
-  <!--<br>
-  <!--Start Directives Class-->
-  <!--<h1 [ngClass]="{isActive: status}">{{lastname}}</h1>
-  <!-- End Directives Class-->
-  <!--</div>
-  <br>
-  <hr>
-  <app-example></app-example>
+      <mat-spinner></mat-spinner>
+        <button type="submit"
+            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-success">
+            Save
+        </button>
+  </form>
+  <br />
+  <p>Form value: {{ angForm.value | json }}</p>
+  <p>Form status: {{ angForm.status | json }}</p>
 </div>
-
-<label for="status">Active</label>
-<input type="radio" id="status" [checked]="status"/>
-{{displayFirstName()}}
-{{getUserStatus()}}
-{{city ? city : 'NoCity'}}
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-
-<!--<router-outlet></router-outlet>-->
